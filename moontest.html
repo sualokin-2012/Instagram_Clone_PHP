@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<div id = "idx">
+		<p>{{msg}}</p>	
+	</div>
+	
+  <div id="idx">
+    <p>{{reverse(msg)}}</p>
+	<p m-if="condition">The Condition is True!</p>
+	<ul>
+		<li m-for="theItemInList in theList">{{theItemInList}}</li>
+	</ul>
+    <button m-if="condition" onclick="changeMsg();">go</button>
+    <button onclick="changeCondition();">cgo</button>
+  </div>
+
+  <script src="https://unpkg.com/moonjs/dist/moon.js"></script>
+  <script>
+    // Our Code Goes Here
+	var app1 = new Moon({
+	  el: "#idx",
+	  data: {
+		msg: "Hello Moon!",
+		condition: true,
+		theList: ['Item - 1', 'Item - 2', 'Item - 3', 'Item - 4']
+	  },
+	  methods: {
+		reverse: function(str) {
+		  return str.split("").reverse().join("");
+		}
+	  }
+	});	
+	
+	function changeMsg(){
+		app1.set('msg', "Changed Message!");
+	}
+	
+	function changeCondition(){
+		app1.set('condition', !app1.get('condition'));
+	}
+  </script>
+</body>
+</html>
